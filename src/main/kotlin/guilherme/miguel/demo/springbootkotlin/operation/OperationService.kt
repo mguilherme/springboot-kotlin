@@ -12,6 +12,6 @@ class OperationService(private val operationRepository: OperationRepository) {
 
     fun getOperation(id: Long): Optional<Operation> = operationRepository.findById(id)
 
-    fun addOperation(operation: Operation): Optional<Operation> = Optional.ofNullable(operationRepository.save(operation))
+    fun addOperation(operation: Operation): Operation = operationRepository.save(operation)
 
 }

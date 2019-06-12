@@ -28,10 +28,7 @@ class OperationController(private val operationService: OperationService) {
     @PostMapping
     fun addOperation(@RequestBody operation: Operation): ResponseEntity<Operation> {
         log.info("Adding a new Operation");
-        return ResponseEntity.ok(
-                operationService.addOperation(operation)
-                        .orElseThrow { RuntimeException("Error while trying to save a new Operation") }
-        )
+        return ResponseEntity.ok(operationService.addOperation(operation))
     }
 
 }

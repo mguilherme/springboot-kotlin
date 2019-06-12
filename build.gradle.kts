@@ -1,12 +1,16 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.noarg.gradle.NoArgExtension
 
 plugins {
-    kotlin("plugin.jpa") version "1.2.71"
-    kotlin("plugin.allopen") version "1.2.71"
+    val kotlinVersion = "1.2.71"
+
+    kotlin("plugin.jpa") version kotlinVersion
+    kotlin("plugin.allopen") version kotlinVersion
+    kotlin("jvm") version kotlinVersion
+    kotlin("plugin.spring") version kotlinVersion
+
     id("org.springframework.boot") version "2.1.5.RELEASE"
     id("io.spring.dependency-management") version "1.0.7.RELEASE"
-    kotlin("jvm") version "1.2.71"
-    kotlin("plugin.spring") version "1.2.71"
 }
 
 allOpen {
