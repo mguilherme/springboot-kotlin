@@ -20,9 +20,9 @@ class OperationController(private val operationService: OperationService) {
     @GetMapping("{id}")
     fun getOperation(@PathVariable id: Long): ResponseEntity<Operation> {
         log.info("Retrieving Operation [$id]");
-        val operation = operationService.getOperation(id).orElseGet { Operation() }
+        val operation = operationService.getOperation(id)
 
-        return ResponseEntity.ok(operation)
+        return ResponseEntity.ok(operation ?: Operation())
     }
 
     @PostMapping
