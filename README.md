@@ -3,7 +3,7 @@ Spring boot with kotlin example.
 This example will pre-populate the database with a few dummy data.
 
 ## Pre-requisites
-   
+* JDK 8 or later  
 * IDE of your choice (IntellijIDEA is preferred)
 * Postgresql database up and running
 
