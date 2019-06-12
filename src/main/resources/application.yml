@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: spring-boot-demo
+
+  datasource:
+    url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5432/test}
+    username: ${DATASOURCE_USERNAME:postgres}
+    password: ${DATASOURCE_PASSWORD:postgres}
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        default_schema: spring_boot_demo
+        jdbc:
+          lob:
+            non_contextual_creation: true
+
+server:
+  port: 9595
