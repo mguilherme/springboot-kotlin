@@ -13,9 +13,9 @@ import javax.persistence.GenerationType.IDENTITY
 data class Operation(
         @Id @GeneratedValue(strategy = IDENTITY) var id: Long? = null,
 
-        var title: String,
+        var title: String? = null,
 
-        @Enumerated(EnumType.STRING) var operationStatus: OperationStatus,
+        @Enumerated(EnumType.STRING) var operationStatus: OperationStatus? = null,
 
         @CreatedDate var createdDate: Instant? = null,
 

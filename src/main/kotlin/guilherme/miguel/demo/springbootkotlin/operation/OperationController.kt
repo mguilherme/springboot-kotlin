@@ -13,13 +13,14 @@ class OperationController(private val operationService: OperationService) {
 
     @GetMapping
     fun getOperations(@PathParam("status") status: OperationStatus?): ResponseEntity<List<Operation>> {
+        log.info("Retrieving operations")
         return ResponseEntity.ok(operationService.getOperations(status))
     }
 
     @GetMapping("{id}")
     fun getOperation(@PathVariable id: Long): ResponseEntity<Operation> {
         log.info("Retrieving Operation [$id]");
-        val operation = operationService.getOperation(id).orElseThrow { RuntimeException("No Operation found") }
+        val operation = operationService.getOperation(id).orElseGet { Operation() }
 
         return ResponseEntity.ok(operation)
     }
@@ -29,7 +30,7 @@ class OperationController(private val operationService: OperationService) {
         log.info("Adding a new Operation");
         return ResponseEntity.ok(
                 operationService.addOperation(operation)
-                        .orElseThrow { RuntimeException("No Operation found") }
+                        .orElseThrow { RuntimeException("Error while trying to save a new Operation") }
         )
     }
 
