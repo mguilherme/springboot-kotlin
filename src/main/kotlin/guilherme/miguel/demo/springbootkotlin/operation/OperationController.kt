@@ -12,7 +12,7 @@ class OperationController(private val operationService: OperationService) {
     private val log = LoggerFactory.getLogger(OperationController::class.java)
 
     @GetMapping
-    fun getOperations(@PathParam("status") status: OperationStatus?): ResponseEntity<List<Operation>> {
+    fun getOperations(@PathParam("status") status: String?): ResponseEntity<List<Operation>> {
         log.info("Retrieving operations")
         return ResponseEntity.ok(operationService.getOperations(status))
     }

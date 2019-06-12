@@ -4,16 +4,17 @@ import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 
 @Service
-class OperationService(private val operationRepository: OperationRepository) {
+class OperationService(private val repository: OperationRepository) {
 
-    fun findAll(): List<Operation> = operationRepository.findAll()
+    fun findAll(): List<Operation> = repository.findAll()
 
-    fun getOperations(status: OperationStatus?): List<Operation> {
-        return status?.let { operationRepository.findAllByOperationStatus(it) } ?: operationRepository.findAll()
+    fun getOperations(status: String?): List<Operation> {
+        return if (status != null) repository.findAllByOperationStatus(OperationStatus.valueOf(status.toUpperCase()))
+        else repository.findAll()
     }
 
-    fun getOperation(id: Long): Operation? = operationRepository.findByIdOrNull(id)
+    fun getOperation(id: Long): Operation? = repository.findByIdOrNull(id)
 
-    fun addOperation(operation: Operation): Operation = operationRepository.save(operation)
+    fun addOperation(operation: Operation): Operation = repository.save(operation)
 
 }
