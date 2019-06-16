@@ -8,9 +8,9 @@ class OperationService(private val repository: OperationRepository) {
 
     fun findAll(): List<Operation> = repository.findAll()
 
-    fun getOperations(status: String?): List<Operation> {
-        return if (status != null) repository.findAllByOperationStatus(OperationStatus.valueOf(status.toUpperCase()))
-        else repository.findAll()
+    fun getOperations(status: String?): List<Operation> = when {
+        status != null -> repository.findAllByOperationStatus(OperationStatus.valueOf(status.toUpperCase()))
+        else -> repository.findAll()
     }
 
     fun getOperation(id: Long): Operation? = repository.findByIdOrNull(id)
